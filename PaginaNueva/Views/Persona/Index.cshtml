@@ -1,0 +1,100 @@
+﻿@model IEnumerable<PaginaNueva.Models.Persona>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @*Html.ActionLink("Crear nueva persona", "Create")*@
+    <button id="Create-persona-modal" type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal-create">Crear</button>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Appaterno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apmaterno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nacionalidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Foto)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Appaterno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apmaterno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nacionalidad)
+            </td>
+            <td>
+                <img data-toggle="modal" data-target="#myModal-image" class="image-index" src="../content/img/personas/@Html.DisplayFor(modelItem => item.Foto)" alt="Smiley face" height="42" width="42">
+            </td>
+            <td>
+                @*Html.ActionLink("Edit", "Edit", new { id = item.PersonaId }) |*@
+                <input id="Edit-persona-modal" type="button" class="btn btn-warning Edit-persona-modal btn-xs" data-id="@item.PersonaId" data-toggle="modal" data-target="#myModal-Edit" value="Editar" />
+                @*Html.ActionLink("Details", "Details", new { id = item.PersonaId }) ||*@
+                <input id="detail-persona-modal" type="button" class="btn btn-info btn-xs detail-persona-modal" data-id="@item.PersonaId" data-toggle="modal" data-target="#myModal" value="Detalles" />
+                @*Html.ActionLink("Delete", "Delete", new { id = item.PersonaId })|*@
+                <input id="Delete-persona-modal" type="button" class="btn btn-danger delete-modal btn-xs" data-id="@item.PersonaId" data-toggle="modal" data-target="#myModal-Delete" value="Eliminar" />
+                
+            </td>
+        </tr>
+    }
+
+    <!-- Modal Details-->
+    <div class="modal fade" id="myModal-image" role="dialog" id="">
+        <div id="image-container">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <center><h4 class="modal-title">Imagen</h4></center>
+                    </div>
+                    <div class="modal-body">
+                        <center><p>Imagen de persona</p></center>
+                        <center><img class="new-image" alt="Smiley face" height="280" width="280"></center>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-Info" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" role="dialog" id="edit-person">
+        <div id="detail-person-container"></div>
+    </div>
+    <!-- Modal Create-->
+    <div class="modal fade" id="myModal-create" role="dialog">
+        <div id="Create-Person-Container"></div>
+    </div>
+    <div class="modal fade" id="myModal-Edit" role="dialog">
+        <div id="edit-Person-Container"></div>
+    </div>
+
+    <div class="modal fade" id="myModal-Delete" role="dialog">
+        <div id="Delete-Person-Container"></div>
+    </div>
+
+</table>

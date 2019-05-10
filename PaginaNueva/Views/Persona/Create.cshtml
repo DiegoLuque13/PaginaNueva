@@ -1,0 +1,94 @@
+﻿@model PaginaNueva.Models.Persona
+@{
+    Layout = "";
+    ViewBag.Title = "Create";
+    var firstName = Request["Foto"];
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <center><h2 class="modal-title">Crear Persona @firstName</h2></center>
+        </div>
+        <div class="modal-body">
+            @*using (Html.BeginForm(Html.BeginForm("Create", "Persona", FormMethod.Post, new { enctype = "multipart/form-data", id = "frm-adjuntar" })))*@
+            @using (Html.BeginForm())
+            {
+
+                @Html.AntiForgeryToken()
+
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                <div class="form-horizontal">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Appaterno, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Appaterno, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Appaterno, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Apmaterno, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Apmaterno, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Apmaterno, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Nacionalidad, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Nacionalidad, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Nacionalidad, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Foto, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line" id="Foto" name="Foto" type="file" value="" />
+                            @Html.ValidationMessageFor(model => model.Foto, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <div class="col-md-offset-8 col-md-2">
+                                <input type="submit" value="Crear" class="btn btn-success" id="create-close-modal" />
+                            </div>
+                            <div class=" col-md-2">
+                                <button type="button" class="btn btn-info" id="close-details" data-dismiss="modal">Cerrar</button>
+                            </div>
+                            <input id="ajaxForm" value="ajax" type="button" />
+                        </div>
+
+
+                    </div>
+
+                </div>
+            }
+
+            @*<div>
+                    @Html.ActionLink("Back to List", "Index")
+                </div>*@
+
+
+        </div>
+
+    </div>
+
+</div>
