@@ -1,22 +1,25 @@
 ﻿@model PaginaNueva.Models.Persona
+@*Scripts.Render("~/Scripts/custom.js")*@
 @{
     Layout = "";
     ViewBag.Title = "Create";
-    var firstName = Request["Foto"];
-}
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
 }
 <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <center><h2 class="modal-title">Crear Persona @firstName</h2></center>
+            <center><h2 class="modal-title">Crear Persona</h2></center>
         </div>
-        <div class="modal-body">
+        <div class="modal-body body-create">
+            <div class="create-persona">
+                <center>
+                    <h3>Usuario agregado</h3>
+                    <img src="../content/img/media/success.jpg" alt="Smiley face" height="42" width="42">
+                </center>
+            </div>
             @*using (Html.BeginForm(Html.BeginForm("Create", "Persona", FormMethod.Post, new { enctype = "multipart/form-data", id = "frm-adjuntar" })))*@
-            @using (Html.BeginForm())
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "form-create-id" }))
             {
 
                 @Html.AntiForgeryToken()
@@ -65,30 +68,30 @@
                             @Html.ValidationMessageFor(model => model.Foto, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <div class="form-group">
-                            <div class="col-md-offset-8 col-md-2">
-                                <input type="submit" value="Crear" class="btn btn-success" id="create-close-modal" />
-                            </div>
-                            <div class=" col-md-2">
-                                <button type="button" class="btn btn-info" id="close-details" data-dismiss="modal">Cerrar</button>
-                            </div>
-                            <input id="ajaxForm" value="ajax" type="button" />
-                        </div>
 
-
-                    </div>
 
                 </div>
             }
 
             @*<div>
-                    @Html.ActionLink("Back to List", "Index")
-                </div>*@
+            @Html.ActionLink("Back to List", "Index")
+        </div>*@
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-md-offset-8 col-md-2">
+                        <input type="button" value="Crear" class="btn btn-success ajaxForm-Post" id="create-close-modal" />
+                    </div>
+                    <div class=" col-md-2">
+                        <button type="button" class="btn btn-info" id="close-details" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
 
+
+            </div>
 
         </div>
 
     </div>
 
 </div>
+@Scripts.Render("~/Scripts/custom.js")

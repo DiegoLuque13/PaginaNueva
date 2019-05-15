@@ -9,6 +9,7 @@ namespace PaginaNueva.Models
 {
     public class Persona
     {
+        [Index]
         [Required]
         public int PersonaId { get; set; }
         [Required]

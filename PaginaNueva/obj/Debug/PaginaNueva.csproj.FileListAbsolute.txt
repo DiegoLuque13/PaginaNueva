@@ -88,3 +88,6 @@ C:\Users\Diego Chavez\source\repos\PaginaNueva\PaginaNueva\obj\Debug\PaginaNueva
 C:\Users\Diego Chavez\source\repos\PaginaNueva\PaginaNueva\obj\Debug\PaginaNueva.Migrations.InitialCreate.resources
 C:\Users\Diego Chavez\source\repos\PaginaNueva\PaginaNueva\obj\Debug\PaginaNueva.csproj.GenerateResource.cache
 C:\Users\Diego Chavez\source\repos\PaginaNueva\PaginaNueva\obj\Debug\PaginaNueva.Migrations.required.resources
+C:\Users\Diego Chavez\source\repos\PaginaNueva\PaginaNueva\obj\Debug\PaginaNueva.Migrations.Index.resources
+C:\Users\Diego Chavez\source\repos\PaginaNueva\PaginaNueva\obj\Debug\PaginaNueva.Migrations.index2.resources
+C:\Users\Diego Chavez\source\repos\PaginaNueva\PaginaNueva\obj\Debug\PaginaNueva.Migrations.i.resources

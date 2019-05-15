@@ -139,6 +139,18 @@
     <Compile Include="Migrations\201905081836241_required.Designer.cs">
       <DependentUpon>201905081836241_required.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905141544059_Index.cs" />
+    <Compile Include="Migrations\201905141544059_Index.Designer.cs">
+      <DependentUpon>201905141544059_Index.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905141547495_index2.cs" />
+    <Compile Include="Migrations\201905141547495_index2.Designer.cs">
+      <DependentUpon>201905141547495_index2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905141616124_i.cs" />
+    <Compile Include="Migrations\201905141616124_i.Designer.cs">
+      <DependentUpon>201905141616124_i.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\PaginaNuevaContext.cs" />
     <Compile Include="Models\Persona.cs" />
@@ -190,6 +202,7 @@
     <Content Include="Views\Persona\Details.cshtml" />
     <Content Include="Views\Persona\Edit.cshtml" />
     <Content Include="Views\Persona\Index.cshtml" />
+    <Content Include="Views\Persona\_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\img\personas\" />
@@ -213,6 +226,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905081836241_required.resx">
       <DependentUpon>201905081836241_required.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905141544059_Index.resx">
+      <DependentUpon>201905141544059_Index.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905141547495_index2.resx">
+      <DependentUpon>201905141547495_index2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905141616124_i.resx">
+      <DependentUpon>201905141616124_i.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

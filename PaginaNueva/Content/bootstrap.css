@@ -4,10 +4,41 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+modal-backdrop.in{
+
+}
+.edit-persona {
+    display: none;
+    width: 100%;
+    text-align: center;
+}
+.edit-persona img {
+    height: 200px;
+    width: 200px;
+}
+.create-persona {
+    display: none;
+    width: 100%;
+    text-align: center;
+}
+.create-persona img {
+    height: 200px;
+    width: 200px;
+}
+.dalete-persona {
+    display: none;
+    width: 100%;
+    text-align: center;
+}
+.dalete-persona img{
+    height: 200px;
+    width: 200px;
+}
+
 html {
-  font-family: sans-serif;
-  -webkit-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
 }
 body {
   margin: 0;
@@ -5152,7 +5183,6 @@ a.thumbnail.active {
   background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
   background-image:      -o-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
   background-image:         linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
-  -webkit-background-size: 40px 40px;
           background-size: 40px 40px;
 }
 .progress.active .progress-bar,

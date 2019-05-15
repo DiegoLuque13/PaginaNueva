@@ -18,6 +18,11 @@ namespace PaginaNueva.Controllers
 
         private PaginaNuevaContext db = new PaginaNuevaContext();
 
+        public async Task<ActionResult> _List()
+        {
+            
+            return PartialView("_List", await db.Personas.ToListAsync());
+        }
 
         // GET: Persona
         public async Task<ActionResult> Index()
@@ -49,7 +54,7 @@ namespace PaginaNueva.Controllers
         // POST: Persona/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        /*[HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "PersonaId,Nombre,Appaterno,Apmaterno,Nacionalidad,Foto")] Persona persona)
         {
@@ -60,6 +65,24 @@ namespace PaginaNueva.Controllers
                 return RedirectToAction("Index");
             }
             return View(persona);
+        }*/
+
+        [HttpPost]
+
+        // El Json recibido será serializado automáticamente al objeto nuevo cocche teniendo en cuenta que las propiedades han de tener el mismo nombre
+        public  JsonResult Create(Persona persona)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Personas.Add(persona);
+                db.SaveChanges();
+                return Json("'Success':'true'");
+            }
+            else
+            {
+                return Json(String.Format("'Success':'false','Error':'Ha habido un error al insertar el registro.'"));
+            }
+               
         }
 
         // GET: Persona/Edit/5
@@ -81,16 +104,19 @@ namespace PaginaNueva.Controllers
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "PersonaId,Nombre,Appaterno,Apmaterno,Nacionalidad,Foto")] Persona persona)
+        public JsonResult Edit(Persona persona)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(persona).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                db.SaveChanges();
+                return Json("'Success':'true'");
             }
-            return View(persona);
+            else
+            {
+                return Json(String.Format("'Success':'false','Error':'Ha habido un error al insertar el registro.'"));
+            }
+
         }
 
         // GET: Persona/Delete/5
@@ -109,14 +135,22 @@ namespace PaginaNueva.Controllers
         }
 
         // POST: Persona/Delete/5
+        // El Json recibido será serializado automáticamente al objeto nuevo cocche teniendo en cuenta que las propiedades han de tener el mismo nombre
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public JsonResult DeleteConfirmed(int id)
         {
-            Persona persona = await db.Personas.FindAsync(id);
-            db.Personas.Remove(persona);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                Persona persona =  db.Personas.Find(id);
+                db.Personas.Remove(persona);
+                db.SaveChangesAsync();
+                return Json("'Success':'true'");
+            }
+            else
+            {
+                return Json(String.Format("'Success':'false','Error':'Ha habido un error al insertar el registro.'"));
+            }
+
         }
 
         protected override void Dispose(bool disposing)
