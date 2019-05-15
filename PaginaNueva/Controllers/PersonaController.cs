@@ -133,7 +133,7 @@ namespace PaginaNueva.Controllers
             }
             return View(persona);
         }
-
+       
         // POST: Persona/Delete/5
         // El Json recibido será serializado automáticamente al objeto nuevo cocche teniendo en cuenta que las propiedades han de tener el mismo nombre
         [HttpPost, ActionName("Delete")]
@@ -152,7 +152,25 @@ namespace PaginaNueva.Controllers
             }
 
         }
-
+        // GET: Persona/Upload/file
+        [HttpPost]
+        public ActionResult LoadFile(HttpPostedFileBase fileUpload)
+        {
+            try
+            {
+                string path = Server.MapPath("~/Content/img/personas/");
+                if (Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                fileUpload.SaveAs(path = Path.GetFileName(fileUpload.FileName));
+            }
+            catch (Exception e)
+            {
+                return Json(new { Value = false, Message = e.Message }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { Value = true, Message = "Subido con éxito" }, JsonRequestBehavior.AllowGet);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -161,12 +179,6 @@ namespace PaginaNueva.Controllers
             }
             base.Dispose(disposing);
         }
-        // GET: Persona/Upload/file
-        [HttpPost]
-        public void Upload(string file)
-        {
-            var fullPath = Server.MapPath("~/content/img/personas/" + file);
-            /*file.SaveAs(fullPath);*/
-        }
+
     }
 }

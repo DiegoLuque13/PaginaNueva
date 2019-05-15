@@ -19,7 +19,7 @@
                 </center>
             </div>
             @*using (Html.BeginForm(Html.BeginForm("Create", "Persona", FormMethod.Post, new { enctype = "multipart/form-data", id = "frm-adjuntar" })))*@
-            @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "form-create-id" }))
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "form-create-id", enctype = "multipart/form-data" }))
             {
 
                 @Html.AntiForgeryToken()
@@ -64,7 +64,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Foto, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            <input class="form-control text-box single-line" id="Foto" name="Foto" type="file" value="" />
+                            <input class="form-control text-box single-line" id="Foto" name="Foto" type="file"  />
                             @Html.ValidationMessageFor(model => model.Foto, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -76,18 +76,16 @@
             @*<div>
             @Html.ActionLink("Back to List", "Index")
         </div>*@
-            <div class="modal-footer">
-                <div class="form-group">
-                    <div class="col-md-offset-8 col-md-2">
-                        <input type="button" value="Crear" class="btn btn-success ajaxForm-Post" id="create-close-modal" />
-                    </div>
-                    <div class=" col-md-2">
-                        <button type="button" class="btn btn-info" id="close-details" data-dismiss="modal">Cerrar</button>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <div class="col-md-offset-8 col-md-2">
+                            <input type="button" value="Crear" class="btn btn-success ajaxForm-Post" id="create-close-modal" />
+                        </div>
+                        <div class=" col-md-2">
+                            <button type="button" class="btn btn-info" id="close-details" data-dismiss="modal">Cerrar</button>
+                        </div>
                     </div>
                 </div>
-
-
-            </div>
 
         </div>
 

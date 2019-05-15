@@ -170,13 +170,30 @@ $(document).ready(function () {
         });
     });
     /*****AGREGAR IMAGEN A MODAL********/
-    $(".image-index").click(function () {
-        var srcimage = $(this).attr("src");
-        //console.log(srcimage);
-        var newsrcimage = $(".new-image").attr("src");
-        //console.log(newsrcimage);
-        $(".new-image").attr("src", srcimage);
-        $("#image-containe").modal('show');
-        //console.log("click");
+    $('#uploadFile').click(function (e) {
+        var selectFile = $("#Foto")[0].files[0].name;
+        var selectFilePath = $("#Foto").val();
+        var data = {
+            File: selectFile,
+            Path : selectFilePath,
+        }
+        var selectFile2 = $("#Foto")[0].files[0];
+        
+        var dataString = new FormData(); 
+        dataString.append("fileUpload", selectFile2);
+        console.log(dataString);
+        $.ajax({
+            type: "POST",
+            url: "Persona/LoadFile",
+            content: "application/json; charset=utf-8",
+            dataType: false,
+            data: dataString,
+            success: function (data) {
+                console.log('Has editado una persona!!');
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                alert('Error!!');
+            }
+        });
     });
 });
