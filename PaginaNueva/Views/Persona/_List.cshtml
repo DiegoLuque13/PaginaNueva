@@ -1,0 +1,63 @@
+﻿@model IEnumerable<PaginaNueva.Models.Persona>
+<div class="content-div">
+    <h2>Index</h2>
+
+    <p>
+        @*Html.ActionLink("Crear nueva persona", "Create")*@
+        <button id="Create-persona-modal" type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal-create">Crear</button>
+    </p>
+    <table class="table ">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Appaterno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apmaterno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nacionalidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Foto)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Appaterno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apmaterno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nacionalidad)
+                </td>
+                <td>
+                    <img data-toggle="modal" data-target="#myModal-image" class="image-index" src="../content/img/personas/@Html.DisplayFor(modelItem => item.Foto)" alt="Smiley face" height="42" width="42">
+                </td>
+                <td>
+                    @*Html.ActionLink("Edit", "Edit", new { id = item.PersonaId }) |*@
+                    <input id="Edit-persona-modal" type="button" class="btn btn-warning Edit-persona-modal btn-xs" data-id="@item.PersonaId" data-toggle="modal" data-target="#myModal-Edit" value="Editar" />
+                    @*Html.ActionLink("Details", "Details", new { id = item.PersonaId }) ||*@
+                    <input id="detail-persona-modal" type="button" class="btn btn-info btn-xs detail-persona-modal" data-id="@item.PersonaId" data-toggle="modal" data-target="#myModal" value="Detalles" />
+                    @*Html.ActionLink("Delete", "Delete", new { id = item.PersonaId })|*@
+                    <input id="Delete-persona-modal" type="button" class="btn btn-danger delete-modal btn-xs" data-id="@item.PersonaId" data-toggle="modal" data-target="#myModal-Delete" value="Eliminar" />
+
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <!-- Modal Details-->
+</div>
+@Scripts.Render("~/Scripts/custom.js")
