@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<PaginaNueva.Models.Persona>
-
+<div class="alerts-ajax alert hidden" role="alert">
+    <center>
+        <h4></h4>
+    </center>
+</div>
 @{
     ViewBag.Title = "Index";
 }
@@ -11,5 +15,4 @@
     $(document).ready(function () {
         $.ajaxPrefilter(function (options, originalOptions, jqXHR) { options.async = true; });
     });
-    
 </script>

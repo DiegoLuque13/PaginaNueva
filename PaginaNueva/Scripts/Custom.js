@@ -8,105 +8,11 @@ $(document).ready(function () {
             success: function (data) {
                 //console.log(data);
                 //alert(data);
-                $(".content-div").html(data);
+                //$(".content-div").html(data);
+                $(".content-div").replaceWith(data);
             }
         });
     };
-    ////AJAX ELIINAR POST
-
-    /*$('.btn-eliminar-confirm').click(function () {
-        console.log("condirmar eliminar");
-    });*/
-    $('.btn-eliminar-confirm').click(function () {
-        var idDeleteConfirm = $(this).attr("data-id");
-        var data = {
-            Id: idDeleteConfirm,
-        };
-
-        $.ajax({
-            type: "POST",
-            url: "Persona/_Delete",
-            content: "application/json; charset=utf-8",
-            dataType: "json",
-            data: data,
-            success: function (d) {
-                console.log('Has eliminado a la pessona persona!!');
-                $('.modal-backdrop.fade.in').css("display", "none");
-                $('.dalete-persona').css("display", "block");
-                $('.body-eliminar-confirm').css("display", "none");
-                $('.btn-eliminar-confirm').addClass("disabled");
-                $('.modal-title').css("display", "none");
-                Cargar();
-            },
-            error: function (xhr, textStatus, errorThrown) {
-                alert('Error!!');
-            }
-        });
-    });
-    /******AJAX CREAR POST******/
-    // Evento que envía una petición Ajax al servidor
-    $('.ajaxForm-Post').click(function (e) {
-
-        var data = {
-            Nombre: $('#Nombre').val(),
-            Appaterno: $('#Appaterno').val(),
-            Apmaterno: $('#Apmaterno').val(),
-            Nacionalidad: $('#Nacionalidad').val(),
-            Foto: $('#Foto').val()
-        };
-
-        $.ajax({
-            type: "POST",
-            url: "Persona/_Create",
-            content: "application/json; charset=utf-8",
-            dataType: "json",
-            data: data,
-            success: function (d) {
-                console.log('Has introducido una nueva persona!!');
-                $('.modal-backdrop.fade.in').css("display", "none");
-                $('#form-create-id').css("display", "none");
-                $('.ajaxForm-Post').addClass("disabled");
-                $('.modal-title').css("display", "none");
-                $('.create-persona').css("display", "block");
-                Cargar();
-            },
-            error: function (xhr, textStatus, errorThrown) {
-                alert('Error!!');
-            }
-        });
-    });
-    /******AJAX EDITAR POST******/
-    // Evento que envía una petición Ajax al servidor
-    $('.edit-post').click(function (e) {
-        var data = {
-            PersonaId: $('#PersonaId').val(),
-            Nombre: $('#Nombre').val(),
-            Appaterno: $('#Appaterno').val(),
-            Apmaterno: $('#Apmaterno').val(),
-            Nacionalidad: $('#Nacionalidad').val(),
-            Foto: $("#Foto").val(),
-        };
-
-        $.ajax({
-            type: "POST",
-            url: "Persona/Edit",
-            content: "application/json; charset=utf-8",
-            dataType: "json",
-            data: data,
-            success: function (d) {
-                console.log('Has editado una persona!!');
-                $('.modal-backdrop.fade.in').css("display", "none");
-                $('.form-horizontal').css("display", "none");
-                $('.modal-title').css("display", "none");
-                $('.edit-persona').css("display", "block");
-                $('.edit-post').addClass("disabled");
-                Cargar();
-            },
-            error: function (xhr, textStatus, errorThrown) {
-                alert('Error!!');
-            }
-        });
-    });
     /******AJAX CREAR******/
     $("#Create-persona-modal").click(function () {
         $.ajax({
@@ -162,5 +68,108 @@ $(document).ready(function () {
             }
         });
     });
+    ////AJAX ELIINAR POST
 
+    /*$('.btn-eliminar-confirm').click(function () {
+        console.log("condirmar eliminar");
+    });*/
+    $('.btn-eliminar-confirm').click(function () {
+        var idDeleteConfirm = $(this).attr("data-id");
+        var data = {
+            Id: idDeleteConfirm,
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "Persona/_Delete",
+            content: "application/json; charset=utf-8",
+            dataType: "json",
+            data: data,
+            success: function (d) {
+                console.log('Has eliminado a la pessona persona!!');
+                $('.alerts-ajax').removeClass("hidden");
+                $('.alerts-ajax').removeClass("alert-success");
+                $('.alerts-ajax').removeClass("alert-warning");
+                $('.alerts-ajax').addClass("alert-danger");
+                $('.alerts-ajax h4').text("Usuario Eliminado !!");
+                $('.modal-backdrop.fade.in').css("display", "none");
+                Cargar();
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                alert('Error!!');
+            }
+        });
+    });
+    /******AJAX CREAR POST******/
+    // Evento que envía una petición Ajax al servidor
+    $('.ajaxForm-Post').click(function (e) {
+
+        var data = {
+            Nombre: $('#Nombre').val(),
+            Appaterno: $('#Appaterno').val(),
+            Apmaterno: $('#Apmaterno').val(),
+            Nacionalidad: $('#Nacionalidad').val(),
+            Foto: $('#Foto').val()
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "Persona/_Create",
+            content: "application/json; charset=utf-8",
+            dataType: "json",
+            data: data,
+            success: function (d) {
+                console.log('Has introducido una nueva persona!!');
+                $('.alerts-ajax').removeClass("hidden");
+                $('.alerts-ajax').removeClass("alert-danger");
+                $('.alerts-ajax').removeClass("alert-warning");
+                $('.alerts-ajax').addClass("alert-success");
+                $('.alerts-ajax h4').text("Usuario Agregado !!");
+                $('.modal-backdrop.fade.in').css("display", "none");
+                Cargar();
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                alert('Error!!');
+            }
+        });
+    });
+    /******AJAX EDITAR POST******/
+    // Evento que envía una petición Ajax al servidor
+    $('.edit-post').click(function (e) {
+        var data = {
+            PersonaId: $('#PersonaId').val(),
+            Nombre: $('#Nombre').val(),
+            Appaterno: $('#Appaterno').val(),
+            Apmaterno: $('#Apmaterno').val(),
+            Nacionalidad: $('#Nacionalidad').val(),
+            Foto: $("#Foto").val(),
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "Persona/_Edit",
+            content: "application/json; charset=utf-8",
+            dataType: "json",
+            data: data,
+            success: function (d) {
+                console.log('Has editado una persona!!');
+                $('.alerts-ajax').removeClass("hidden");
+                $('.alerts-ajax').removeClass("alert-danger");
+                $('.alerts-ajax').removeClass("alert-warning");
+                $('.alerts-ajax').addClass("alert-warning");
+                $('.alerts-ajax h4').text("Usuario Editado !!");
+                $('.modal-backdrop.fade.in').css("display", "none");
+                Cargar();
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                alert('Error!!');
+                console.log('Has editado una persona!!');
+                $('.alerts-ajax').removeClass("hidden");
+                $('.alerts-ajax').removeClass("alert-danger");
+                $('.alerts-ajax').removeClass("alert-warning");
+                $('.alerts-ajax').addClass("alert-warning");
+                $('.alerts-ajax h4').text("Error al editar usuario!!");
+            }
+        });
+    });
 });

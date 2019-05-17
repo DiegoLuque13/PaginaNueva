@@ -81,57 +81,9 @@
             <!--div>
                 @Html.ActionLink("Back to List", "Index")
             </div-->
-
-            @section Scripts {
-                @Scripts.Render("~/bundles/jqueryval")
-            }
         </div>
 
     </div>
 
 </div>
-<script>
-    function Cargar() {
-        $.ajax({
-            url: 'Persona/_list',
-            type: 'GET',
-            success: function (data) {
-                //console.log(data);
-                //alert(data);
-                $(".content-div").html(data);
-            }
-        });
-    };
-    /******AJAX EDITAR POST******/
-    // Evento que envía una petición Ajax al servidor
-    $('.edit-post').click(function (e) {
-        var data = {
-            PersonaId: $('#PersonaId').val(),
-            Nombre: $('#Nombre').val(),
-            Appaterno: $('#Appaterno').val(),
-            Apmaterno: $('#Apmaterno').val(),
-            Nacionalidad: $('#Nacionalidad').val(),
-            Foto: $("#Foto").val(),
-        };
-
-        $.ajax({
-            type: "POST",
-            url: "Persona/_Edit",
-            content: "application/json; charset=utf-8",
-            dataType: "json",
-            data: data,
-            success: function (d) {
-                console.log('Has editado una persona!!');
-                $('.modal-backdrop.fade.in').css("display", "none");
-                $('.form-horizontal').css("display", "none");
-                $('.modal-title').css("display", "none");
-                $('.edit-persona').css("display", "block");
-                $('.edit-post').addClass("disabled");
-                Cargar();
-            },
-            error: function (xhr, textStatus, errorThrown) {
-                alert('Error!!');
-            }
-        });
-    });
-</script>
+@Scripts.Render("~/Scripts/Custom.js")

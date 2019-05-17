@@ -1,2 +1,7 @@
 .vs/
 PaginaNueva/App_Data
+PaginaNueva/App_Data/
+/PaginaNueva/App_Data
+/PaginaNueva/App_Data/
+PaginaNueva/App_Data/PaginaNuevaContext-20190507142346.mdf
+PaginaNueva/App_Data/PaginaNuevaContext-20190507142346_log.l

@@ -8,12 +8,6 @@
             <center><h2 class="modal-title">Crear Persona</h2></center>
         </div>
         <div class="modal-body body-create">
-            <div class="create-persona">
-                <center>
-                    <h3>Usuario agregado</h3>
-                    <img src="../content/img/media/success.jpg" alt="Smiley face" height="42" width="42">
-                </center>
-            </div>
             @*using (Html.BeginForm(Html.BeginForm("Create", "Persona", FormMethod.Post, new { enctype = "multipart/form-data", id = "frm-adjuntar" })))*@
             @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "form-create-id", enctype = "multipart/form-data" }))
             {
