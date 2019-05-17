@@ -85,15 +85,27 @@ $(document).ready(function () {
             content: "application/json; charset=utf-8",
             dataType: "json",
             data: data,
-            success: function (d) {
-                console.log('Has eliminado a la pessona persona!!');
-                $('.alerts-ajax').removeClass("hidden");
-                $('.alerts-ajax').removeClass("alert-success");
-                $('.alerts-ajax').removeClass("alert-warning");
-                $('.alerts-ajax').addClass("alert-danger");
-                $('.alerts-ajax h4').text("Usuario Eliminado !!");
-                $('.modal-backdrop.fade.in').css("display", "none");
-                Cargar();
+            success: function (response) {
+                if (response = "True") {
+                    console.log('Has eliminado al usuario!!');
+                    $('.alerts-ajax').removeClass("hidden");
+                    $('.alerts-ajax').removeClass("alert-success");
+                    $('.alerts-ajax').removeClass("alert-warning");
+                    $('.alerts-ajax').addClass("alert-danger");
+                    $('.alerts-ajax h4').text("Usuario Eliminado !!");
+                    $('.modal-backdrop.fade.in').css("display", "none");
+                    Cargar();
+                }
+                else {
+                    console.log('Error al aliminar usuario!!');
+                    $('.alerts-ajax').removeClass("hidden");
+                    $('.alerts-ajax').removeClass("alert-success");
+                    $('.alerts-ajax').removeClass("alert-warning");
+                    $('.alerts-ajax').addClass("alert-danger");
+                    $('.alerts-ajax h4').text("Error al aliminar usuario !!");
+                    $('.modal-backdrop.fade.in').css("display", "none");
+                    Cargar();
+                }
             },
             error: function (xhr, textStatus, errorThrown) {
                 alert('Error!!');
@@ -109,7 +121,8 @@ $(document).ready(function () {
             Appaterno: $('#Appaterno').val(),
             Apmaterno: $('#Apmaterno').val(),
             Nacionalidad: $('#Nacionalidad').val(),
-            Foto: $('#Foto').val()
+            //Foto: $('#Foto').val()
+            Foto : $('#Foto')[0].files[0].name,
         };
 
         $.ajax({
@@ -118,15 +131,28 @@ $(document).ready(function () {
             content: "application/json; charset=utf-8",
             dataType: "json",
             data: data,
-            success: function (d) {
-                console.log('Has introducido una nueva persona!!');
-                $('.alerts-ajax').removeClass("hidden");
-                $('.alerts-ajax').removeClass("alert-danger");
-                $('.alerts-ajax').removeClass("alert-warning");
-                $('.alerts-ajax').addClass("alert-success");
-                $('.alerts-ajax h4').text("Usuario Agregado !!");
-                $('.modal-backdrop.fade.in').css("display", "none");
-                Cargar();
+            success: function (response) {
+                
+                if (response == "True") {
+                    console.log('Has introducido una nueva usuario!!');
+                    $('.alerts-ajax').removeClass("hidden");
+                    $('.alerts-ajax').removeClass("alert-danger");
+                    $('.alerts-ajax').removeClass("alert-warning");
+                    $('.alerts-ajax').addClass("alert-success");
+                    $('.alerts-ajax h4').text("Usuario Agregado !!");
+                    $('.modal-backdrop.fade.in').css("display", "none");
+                    Cargar();
+                }
+                else {
+                    console.log('Error al agregar usuario!!');
+                    $('.alerts-ajax').removeClass("hidden");
+                    $('.alerts-ajax').removeClass("alert-success");
+                    $('.alerts-ajax').removeClass("alert-warning");
+                    $('.alerts-ajax').addClass("alert-danger");
+                    $('.alerts-ajax h4').text("Error al agregar usuario !!");
+                    $('.modal-backdrop.fade.in').css("display", "none");
+                    Cargar();
+                }
             },
             error: function (xhr, textStatus, errorThrown) {
                 alert('Error!!');
@@ -142,7 +168,8 @@ $(document).ready(function () {
             Appaterno: $('#Appaterno').val(),
             Apmaterno: $('#Apmaterno').val(),
             Nacionalidad: $('#Nacionalidad').val(),
-            Foto: $("#Foto").val(),
+            //Foto: $('#Foto').val()
+            Foto: $('#Foto')[0].files[0].name,
         };
 
         $.ajax({
@@ -151,25 +178,59 @@ $(document).ready(function () {
             content: "application/json; charset=utf-8",
             dataType: "json",
             data: data,
-            success: function (d) {
-                console.log('Has editado una persona!!');
-                $('.alerts-ajax').removeClass("hidden");
-                $('.alerts-ajax').removeClass("alert-danger");
-                $('.alerts-ajax').removeClass("alert-warning");
-                $('.alerts-ajax').addClass("alert-warning");
-                $('.alerts-ajax h4').text("Usuario Editado !!");
-                $('.modal-backdrop.fade.in').css("display", "none");
-                Cargar();
+            success: function (response) {
+                if (response = "True") {
+                    console.log('Has editado una persona!!');
+                    $('.alerts-ajax').removeClass("hidden");
+                    $('.alerts-ajax').removeClass("alert-danger");
+                    $('.alerts-ajax').removeClass("alert-warning");
+                    $('.alerts-ajax').addClass("alert-warning");
+                    $('.alerts-ajax h4').text("Usuario Editado !!");
+                    $('.modal-backdrop.fade.in').css("display", "none");
+                    Cargar();
+                }
+                else {
+                    console.log('Error al editar usuario!!');
+                    $('.alerts-ajax').removeClass("hidden");
+                    $('.alerts-ajax').removeClass("alert-success");
+                    $('.alerts-ajax').removeClass("alert-warning");
+                    $('.alerts-ajax').addClass("alert-danger");
+                    $('.alerts-ajax h4').text("Error al editar usuario!!");
+                    $('.modal-backdrop.fade.in').css("display", "none");
+                    Cargar();
+                }
             },
             error: function (xhr, textStatus, errorThrown) {
                 alert('Error!!');
-                console.log('Has editado una persona!!');
-                $('.alerts-ajax').removeClass("hidden");
-                $('.alerts-ajax').removeClass("alert-danger");
-                $('.alerts-ajax').removeClass("alert-warning");
-                $('.alerts-ajax').addClass("alert-warning");
-                $('.alerts-ajax h4').text("Error al editar usuario!!");
             }
         });
+
     });
 });
+
+/*$('#uploadFile').click(function (e) {
+    var selectFile = $("#Foto")[0].files[0].name;
+    var selectFilePath = $("#Foto").val();
+    var data = {
+        FileName: selectFile,
+        Path: selectFilePath,
+    }
+    //var selectFile2 = $("#Foto")[0].files[0];
+    //var dataString = new FormData();
+    //dataString.append("fileUpload", selectFile2);
+    //console.log(dataString);
+    $.ajax({
+        type: "POST",
+        url: "Persona/LoadFile",
+        content: "application/json; charset=utf-8",
+        dataType: false,
+        data: data,
+        success: function (d) {
+
+            console.log('Archivo cargado!!');
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            alert('Error!!');
+        }
+    });
+});*/

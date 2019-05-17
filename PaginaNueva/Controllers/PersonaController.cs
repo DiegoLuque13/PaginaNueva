@@ -76,11 +76,11 @@ namespace PaginaNueva.Controllers
             {
                 db.Personas.Add(persona);
                 db.SaveChanges();
-                return Json("'Success':'true'");
+                return Json("True");
             }
             else
             {
-                return Json(String.Format("'Success':'false','Error':'Ha habido un error al insertar el registro.'"));
+                return Json("False");
             }
                
         }
@@ -110,11 +110,11 @@ namespace PaginaNueva.Controllers
             {
                 db.Entry(persona).State = EntityState.Modified;
                 db.SaveChanges();
-                return Json("'Success':'true'");
+                return Json("True");
             }
             else
             {
-                return Json(String.Format("'Success':'false','Error':'Ha habido un error al insertar el registro.'"));
+                return Json("False");
             }
 
         }
@@ -144,13 +144,40 @@ namespace PaginaNueva.Controllers
                 Persona persona =  db.Personas.Find(id);
                 db.Personas.Remove(persona);
                 db.SaveChangesAsync();
-                return Json("'Success':'true'");
+                return Json("True");
             }
             else
             {
-                return Json(String.Format("'Success':'false','Error':'Ha habido un error al insertar el registro.'"));
+                return Json("False");
             }
 
+        }
+        // GET: Persona/Upload/file
+        [HttpPost]
+        public ActionResult LoadFile(HttpPostedFileBase fileUpload)
+        {
+            try
+            {
+                string path = Server.MapPath("~/Content/img/personas/");
+                if (Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                fileUpload.SaveAs(path = Path.GetFileName(fileUpload.FileName));
+            }
+            catch (Exception e)
+            {
+                return Json(new { Value = false, Message = e.Message }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { Value = true, Message = "Subido con éxito" }, JsonRequestBehavior.AllowGet);
+        }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
 
     }
