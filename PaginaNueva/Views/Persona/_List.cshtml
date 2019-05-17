@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<PaginaNueva.Models.Persona>
+
 <div class="content-div">
+    @Scripts.Render("~/bundles/jquery")
     <h2>Index</h2>
 
     <p>
@@ -60,5 +62,40 @@
     </table>
 
     <!-- Modal Details-->
+    <div class="modal fade" id="myModal-image" role="dialog">
+        <div id="image-container">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <center><h4 class="modal-title">Imagen</h4></center>
+                    </div>
+                    <div class="modal-body">
+                        <center><p>Imagen de persona</p></center>
+                        <center><img class="new-image" alt="Smiley face" height="280" width="280"></center>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-Info" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div id="detail-person-container"></div>
+    </div>
+    <!-- Modal Create-->
+    <div class="modal fade" id="myModal-create" role="dialog">
+        <div id="Create-Person-Container"></div>
+    </div>
+    <div class="modal fade" id="myModal-Edit" role="dialog">
+        <div id="edit-Person-Container"></div>
+    </div>
+
+    <div class="modal fade" id="myModal-Delete" role="dialog">
+        <div id="Delete-Person-Container"></div>
+    </div>
 </div>
 @Scripts.Render("~/Scripts/custom.js")

@@ -68,26 +68,25 @@
                         </div>
                     </div>
                 </div>
-                }
-                <div class="modal-footer">
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="button" value="Editar" class="btn btn-warning edit-post" />
-                            <button type="button" class="btn btn-info" id="close-details" data-dismiss="modal">Cerrar</button>
-                        </div>
+            }
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="button" value="Editar" class="btn btn-warning edit-post" />
+                        <button type="button" class="btn btn-info" id="close-details" data-dismiss="modal">Cerrar</button>
                     </div>
-
                 </div>
-                <!--div>
-            @Html.ActionLink("Back to List", "Index")
-        </div-->
 
-                @section Scripts {
-                    @Scripts.Render("~/bundles/jqueryval")
-                }
             </div>
+            <!--div>
+                @Html.ActionLink("Back to List", "Index")
+            </div-->
+        </div>
 
     </div>
 
 </div>
-@Scripts.Render("~/Scripts/custom.js")
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/Custom.js")
+}

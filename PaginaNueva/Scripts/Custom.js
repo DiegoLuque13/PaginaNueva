@@ -1,6 +1,6 @@
 ﻿// A $( document ).ready() block.
 $(document).ready(function () {
-   
+    //  RECARGAR LIST
     function Cargar() {
         $.ajax({
             url: 'Persona/_list',
@@ -12,24 +12,34 @@ $(document).ready(function () {
             }
         });
     };
+    ////AJAX ELIINAR POST
 
-    $(".btn btn-warning").click(function () {
-        $("#Create-Person-Container").css("display", "Block");
-        $(".create-persona").css("display", "none");
-        $("#form-create-id").removeClass("disabled");
-    });
+    /*$('.btn-eliminar-confirm').click(function () {
+        console.log("condirmar eliminar");
+    });*/
+    $('.btn-eliminar-confirm').click(function () {
+        var idDeleteConfirm = $(this).attr("data-id");
+        var data = {
+            Id: idDeleteConfirm,
+        };
 
-  
-    /******AJAX CREAR******/
-    $("#Create-persona-modal").click(function () {
         $.ajax({
-            url: 'Persona/Create',
-            type: 'GET',
-            success: function (data) {
-                //alert(data);
-                $("#Create-Person-Container").html(data);
-                //$(".edit-person-container").load(data);
-                $("#Create-Person-Container").modal('show');
+            type: "POST",
+            url: "Persona/_Delete",
+            content: "application/json; charset=utf-8",
+            dataType: "json",
+            data: data,
+            success: function (d) {
+                console.log('Has eliminado a la pessona persona!!');
+                $('.modal-backdrop.fade.in').css("display", "none");
+                $('.dalete-persona').css("display", "block");
+                $('.body-eliminar-confirm').css("display", "none");
+                $('.btn-eliminar-confirm').addClass("disabled");
+                $('.modal-title').css("display", "none");
+                Cargar();
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                alert('Error!!');
             }
         });
     });
@@ -47,12 +57,13 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "Persona/Create",
+            url: "Persona/_Create",
             content: "application/json; charset=utf-8",
             dataType: "json",
             data: data,
-            success: function (d) {          
+            success: function (d) {
                 console.log('Has introducido una nueva persona!!');
+                $('.modal-backdrop.fade.in').css("display", "none");
                 $('#form-create-id').css("display", "none");
                 $('.ajaxForm-Post').addClass("disabled");
                 $('.modal-title').css("display", "none");
@@ -61,80 +72,6 @@ $(document).ready(function () {
             },
             error: function (xhr, textStatus, errorThrown) {
                 alert('Error!!');
-            }
-        });
-    });
-    /******AJAX ELIMINAR******/
-    $(".delete-modal").click(function () {
-        var idDelete = $(this).attr("data-id");
-        $.ajax({
-            url: 'Persona/Delete/' + idDelete,
-            type: 'GET',
-            success: function (data) {
-                //alert(data);
-                $("#Delete-Person-Container").html(data);
-                //$(".edit-person-container").load(data);
-                $("#Delete-Person-Container").modal('show');
-            }
-        });
-    });
-    ////AJAX ELIINAR POST
-    
-    /*$('.btn-eliminar-confirm').click(function () {
-        console.log("condirmar eliminar");
-    });*/
-    $('.btn-eliminar-confirm').click(function () {
-        var idDeleteConfirm = $(this).attr("data-id");
-        var data = {
-            Id: idDeleteConfirm,
-        };
-
-        $.ajax({
-            type: "POST",
-            url: "Persona/Delete",
-            content: "application/json; charset=utf-8",
-            dataType: "json",
-            data: data,
-            success: function (d) {
-                console.log('Has eliminado a la pessona persona!!');
-                $('.dalete-persona').css("display", "block");
-                $('.body-eliminar-confirm').css("display", "none");
-                $('.btn-eliminar-confirm').addClass("disabled");
-                $('.modal-title').css("display", "none");
-                Cargar();
-            },
-            error: function (xhr, textStatus, errorThrown) {
-                alert('Error!!');
-            }
-        });
-    });
-    /******AJAX DETALLE******/
-    $(".detail-persona-modal").click(function () {
-        var id = $(this).attr("data-id");
-        //console.log(id);
-        //console.log(id);
-        $.ajax({
-            url: 'Persona/Details/' + id,
-            type: 'POST',
-            success: function (data) {
-                //alert(data);
-                $("#detail-person-container").html(data);
-                //$(".edit-person-container").load(data);
-                $("#edit-person").modal('show');
-            }
-        });
-    });
-    /******AJAX EDITAR******/
-    $(".Edit-persona-modal").click(function () {
-        var idEdit = $(this).attr("data-id");
-        $.ajax({
-            url: 'Persona/Edit/' + idEdit,
-            type: 'GET',
-            success: function (data) {
-                //alert(data);
-                $("#edit-Person-Container").html(data);
-                //$(".edit-person-container").load(data);
-                $("#edit-Person-Container").modal('show');
             }
         });
     });
@@ -158,6 +95,7 @@ $(document).ready(function () {
             data: data,
             success: function (d) {
                 console.log('Has editado una persona!!');
+                $('.modal-backdrop.fade.in').css("display", "none");
                 $('.form-horizontal').css("display", "none");
                 $('.modal-title').css("display", "none");
                 $('.edit-persona').css("display", "block");
@@ -169,31 +107,60 @@ $(document).ready(function () {
             }
         });
     });
-    /*****AGREGAR IMAGEN A MODAL********/
-    $('#uploadFile').click(function (e) {
-        var selectFile = $("#Foto")[0].files[0].name;
-        var selectFilePath = $("#Foto").val();
-        var data = {
-            File: selectFile,
-            Path : selectFilePath,
-        }
-        var selectFile2 = $("#Foto")[0].files[0];
-        
-        var dataString = new FormData(); 
-        dataString.append("fileUpload", selectFile2);
-        console.log(dataString);
+    /******AJAX CREAR******/
+    $("#Create-persona-modal").click(function () {
         $.ajax({
-            type: "POST",
-            url: "Persona/LoadFile",
-            content: "application/json; charset=utf-8",
-            dataType: false,
-            data: dataString,
+            url: 'Persona/_Create',
+            type: 'GET',
             success: function (data) {
-                console.log('Has editado una persona!!');
-            },
-            error: function (xhr, textStatus, errorThrown) {
-                alert('Error!!');
+                //alert(data);
+                $("#Create-Person-Container").html(data);
+                //$(".edit-person-container").load(data);
             }
         });
     });
+
+    /******AJAX ELIMINAR******/
+    $(".delete-modal").click(function () {
+        var idDelete = $(this).attr("data-id");
+        $.ajax({
+            url: 'Persona/_Delete/' + idDelete,
+            type: 'GET',
+            success: function (data) {
+                //alert(data);
+                $("#Delete-Person-Container").html(data);
+                //$(".edit-person-container").load(data);
+            }
+        });
+    });
+    /******AJAX DETALLE******/
+    $(".detail-persona-modal").click(function () {
+        var id = $(this).attr("data-id");
+        //console.log(id);
+        //console.log(id);
+        $.ajax({
+            url: 'Persona/_Details/' + id,
+            type: 'POST',
+            success: function (data) {
+                //alert(data);
+                $("#detail-person-container").html(data);
+                //$(".edit-person-container").load(data);
+            }
+        });
+    });
+
+    /******AJAX EDITAR******/
+    $(".Edit-persona-modal").click(function () {
+        var idEdit = $(this).attr("data-id");
+        $.ajax({
+            url: 'Persona/_Edit/' + idEdit,
+            type: 'GET',
+            success: function (data) {
+                //alert(data);
+                $("#edit-Person-Container").html(data);
+                //$(".edit-person-container").load(data);
+            }
+        });
+    });
+
 });

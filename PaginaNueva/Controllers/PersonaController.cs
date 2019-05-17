@@ -18,26 +18,26 @@ namespace PaginaNueva.Controllers
 
         private PaginaNuevaContext db = new PaginaNuevaContext();
 
-        public async Task<ActionResult> _List()
+        public ActionResult _List()
         {
             
-            return PartialView("_List", await db.Personas.ToListAsync());
+            return PartialView("_List", db.Personas.ToList());
         }
 
         // GET: Persona
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await db.Personas.ToListAsync());
+            return View(db.Personas.ToList());
         }
 
         // GET: Persona/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult _Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Persona persona = await db.Personas.FindAsync(id);
+            Persona persona = db.Personas.Find(id);
             if (persona == null)
             {
                 return HttpNotFound();
@@ -46,9 +46,9 @@ namespace PaginaNueva.Controllers
         }
 
         // GET: Persona/Create
-        public ActionResult Create()
+        public ActionResult _Create()
         {
-            return View();
+            return PartialView("_Create");
         }
 
         // POST: Persona/Create
@@ -70,7 +70,7 @@ namespace PaginaNueva.Controllers
         [HttpPost]
 
         // El Json recibido será serializado automáticamente al objeto nuevo cocche teniendo en cuenta que las propiedades han de tener el mismo nombre
-        public  JsonResult Create(Persona persona)
+        public  JsonResult _Create(Persona persona)
         {
             if (ModelState.IsValid)
             {
@@ -86,13 +86,13 @@ namespace PaginaNueva.Controllers
         }
 
         // GET: Persona/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult _Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Persona persona = await db.Personas.FindAsync(id);
+            Persona persona = db.Personas.Find(id);
             if (persona == null)
             {
                 return HttpNotFound();
@@ -104,7 +104,7 @@ namespace PaginaNueva.Controllers
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public JsonResult Edit(Persona persona)
+        public JsonResult _Edit(Persona persona)
         {
             if (ModelState.IsValid)
             {
@@ -120,13 +120,13 @@ namespace PaginaNueva.Controllers
         }
 
         // GET: Persona/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult _Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Persona persona = await db.Personas.FindAsync(id);
+            Persona persona = db.Personas.Find(id);
             if (persona == null)
             {
                 return HttpNotFound();
@@ -136,7 +136,7 @@ namespace PaginaNueva.Controllers
        
         // POST: Persona/Delete/5
         // El Json recibido será serializado automáticamente al objeto nuevo cocche teniendo en cuenta que las propiedades han de tener el mismo nombre
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("_Delete")]
         public JsonResult DeleteConfirmed(int id)
         {
             if (ModelState.IsValid)
@@ -151,33 +151,6 @@ namespace PaginaNueva.Controllers
                 return Json(String.Format("'Success':'false','Error':'Ha habido un error al insertar el registro.'"));
             }
 
-        }
-        // GET: Persona/Upload/file
-        [HttpPost]
-        public ActionResult LoadFile(HttpPostedFileBase fileUpload)
-        {
-            try
-            {
-                string path = Server.MapPath("~/Content/img/personas/");
-                if (Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path);
-                }
-                fileUpload.SaveAs(path = Path.GetFileName(fileUpload.FileName));
-            }
-            catch (Exception e)
-            {
-                return Json(new { Value = false, Message = e.Message }, JsonRequestBehavior.AllowGet);
-            }
-            return Json(new { Value = true, Message = "Subido con éxito" }, JsonRequestBehavior.AllowGet);
-        }
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
 
     }

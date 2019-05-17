@@ -197,12 +197,13 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Persona\Create.cshtml" />
-    <Content Include="Views\Persona\Delete.cshtml" />
-    <Content Include="Views\Persona\Details.cshtml" />
     <Content Include="Views\Persona\Edit.cshtml" />
     <Content Include="Views\Persona\Index.cshtml" />
     <Content Include="Views\Persona\_List.cshtml" />
+    <Content Include="Views\Persona\_Create.cshtml" />
+    <Content Include="Views\Persona\_Delete.cshtml" />
+    <Content Include="Views\Persona\_Details.cshtml" />
+    <Content Include="Views\Persona\_Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\img\personas\" />
