@@ -10,17 +10,19 @@ namespace PaginaNueva.Models
     public class Persona
     {
         [Index]
-        [Required]
+        [Required(ErrorMessage ="El campo {0} es requerido")]
         public int PersonaId { get; set; }
-        [Required]
+        [Required(ErrorMessage = "El campo {0} es requerido")]
         public string Nombre { get; set; }
-        [Required]
+        [Required(ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name ="Apellido Paterno")]
         public string Appaterno { get; set; }
-        [Required]
+        [Required(ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Apellido Materno")]
         public string Apmaterno { get; set; }
-        [Required]
+        [Required(ErrorMessage = "El campo {0} es requerido")]
         public string Nacionalidad { get; set; }
-        [Required]
+        [Required(ErrorMessage = "El campo {0} es requerido")]
         public string Foto { get; set; }
     }
 }

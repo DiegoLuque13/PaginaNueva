@@ -95,6 +95,7 @@ $(document).ready(function () {
                     $('.alerts-ajax h4').text("Usuario Eliminado !!");
                     $('.modal-backdrop.fade.in').css("display", "none");
                     Cargar();
+                    setTimeout(" $('.alerts-ajax').addClass('hidden')", 2000);
                 }
                 else {
                     console.log('Error al aliminar usuario!!');
@@ -105,6 +106,7 @@ $(document).ready(function () {
                     $('.alerts-ajax h4').text("Error al aliminar usuario !!");
                     $('.modal-backdrop.fade.in').css("display", "none");
                     Cargar();
+                    setTimeout(" $('.alerts-ajax').addClass('hidden')", 2000);
                 }
             },
             error: function (xhr, textStatus, errorThrown) {
@@ -142,6 +144,7 @@ $(document).ready(function () {
                     $('.alerts-ajax h4').text("Usuario Agregado !!");
                     $('.modal-backdrop.fade.in').css("display", "none");
                     Cargar();
+                    setTimeout(" $('.alerts-ajax').addClass('hidden')", 2000);
                 }
                 else {
                     console.log('Error al agregar usuario!!');
@@ -152,6 +155,7 @@ $(document).ready(function () {
                     $('.alerts-ajax h4').text("Error al agregar usuario !!");
                     $('.modal-backdrop.fade.in').css("display", "none");
                     Cargar();
+                    setTimeout(" $('.alerts-ajax').addClass('hidden')", 2000);
                 }
             },
             error: function (xhr, textStatus, errorThrown) {
@@ -188,6 +192,7 @@ $(document).ready(function () {
                     $('.alerts-ajax h4').text("Usuario Editado !!");
                     $('.modal-backdrop.fade.in').css("display", "none");
                     Cargar();
+                    setTimeout(" $('.alerts-ajax').addClass('hidden')", 2000);
                 }
                 else {
                     console.log('Error al editar usuario!!');
@@ -198,6 +203,7 @@ $(document).ready(function () {
                     $('.alerts-ajax h4').text("Error al editar usuario!!");
                     $('.modal-backdrop.fade.in').css("display", "none");
                     Cargar();
+                    setTimeout(" $('.alerts-ajax').addClass('hidden')", 2000);
                 }
             },
             error: function (xhr, textStatus, errorThrown) {
